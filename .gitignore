@@ -77,9 +77,9 @@ ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# Claude Code temporary files
-tmpclaude-*
-.claude/
+# Temporary files
+tmp*
+.cache/
 
 # MkDocs documentation build
 site/
