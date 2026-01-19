@@ -1,0 +1,16 @@
+[general]
+name=Advanced Layer Renamer
+description=Professional tool for batch renaming layers with advanced features
+version=0.1.0
+qgisMinimumVersion=3.0
+author=Mukesh Ray
+email=dr.raymukesh@gmail.com
+about=Advanced batch renaming with numbering, templates, validation, and more
+tracker=https://github.com/raymukesh/advanced_layer_renamer/issues
+repository=https://github.com/raymukesh/advanced_layer_renamer
+tags=batch, rename, layers, utility, template
+category=Vector
+icon=icon.png
+experimental=False
+deprecated=False
+homepage=https://github.com/raymukesh/advanced_layer_renamer

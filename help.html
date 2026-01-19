@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Layer Renamer - Help</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .tip {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        ul, ol {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .workflow {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📖 Advanced Layer Renamer - User Guide</h1>
+
+    <h2>🚀 Quick Start</h2>
+    <ol>
+        <li><strong>Select layers</strong> you want to rename (or use "Select All")</li>
+        <li><strong>Configure</strong> your renaming options in the right panel</li>
+        <li>Click <strong>"Preview Changes"</strong> to see what will happen</li>
+        <li>Click <strong>"Rename Layers"</strong> to apply the changes</li>
+    </ol>
+
+    <div class="tip">
+        <strong>💡 Pro Tip:</strong> Always preview your changes before renaming to avoid mistakes!
+    </div>
+
+    <h2>🔧 Main Features</h2>
+
+    <h3>🔢 Numbering Options</h3>
+    <ul>
+        <li><strong>No numbering:</strong> Keep original names unchanged</li>
+        <li><strong>Sequential:</strong> Add simple numbers (1_layername, 2_layername)</li>
+        <li><strong>Leading zeros:</strong> Add padded numbers (01_layername, 02_layername)</li>
+    </ul>
+
+    <h3>📝 Basic Options</h3>
+    <ul>
+        <li><strong>Prefix/Suffix:</strong> Add text before/after layer names</li>
+        <li><strong>Find/Replace:</strong> Replace specific text in names</li>
+        <li><strong>Regex:</strong> Use regular expressions for advanced pattern matching</li>
+        <li><strong>Case Options:</strong>
+            <ul>
+                <li><code>UPPERCASE</code>: "layer_name" → "LAYER_NAME"</li>
+                <li><code>lowercase</code>: "Layer_Name" → "layer_name"</li>
+                <li><code>Title Case</code>: "layer_name" → "Layer_Name"</li>
+                <li><code>Capitalized</code>: "layer_name" → "Layer_name"</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>⚙️ Advanced Options</h3>
+    <ul>
+        <li><strong>Date Stamp:</strong> Add current date to layer names</li>
+        <li><strong>Remove Special Chars:</strong> Clean invalid characters</li>
+        <li><strong>Clean Whitespace:</strong> Remove extra spaces</li>
+    </ul>
+
+    <h2>💾 Templates Tab</h2>
+    <p>Save your favorite renaming configurations:</p>
+    <ul>
+        <li><strong>Save Template:</strong> Save current settings for future use</li>
+        <li><strong>Load Template:</strong> Apply saved settings</li>
+        <li><strong>Delete Template:</strong> Remove unwanted templates</li>
+        <li><strong>Quick Templates:</strong> Apply common naming conventions</li>
+    </ul>
+
+    <h2>⚡ Quick Template Examples</h2>
+    <ul>
+        <li><strong>Date Prefix:</strong> Adds current date (e.g., "20231201_roads")</li>
+        <li><strong>Clean Names:</strong> Removes special characters and cleans whitespace</li>
+        <li><strong>Project Standard:</strong> Uses leading zeros and clean whitespace</li>
+    </ul>
+
+    <h2>✅ Validation Tab</h2>
+    <p>Check for potential naming issues:</p>
+    <ul>
+        <li>Invalid characters (&lt; &gt; : " / \ | ? *)</li>
+        <li>Name length limits</li>
+        <li>Empty or whitespace-only names</li>
+        <li>Leading/trailing spaces</li>
+    </ul>
+
+    <h2>💡 Pro Tips</h2>
+    <ul>
+        <li>Always preview before renaming</li>
+        <li>Use templates for consistent project naming</li>
+        <li>Validate names before sharing projects</li>
+        <li>Combine multiple options for complex renaming</li>
+        <li>Use regex for advanced pattern matching</li>
+    </ul>
+
+    <h2>🔄 Example Workflows</h2>
+
+    <div class="workflow">
+        <h4>Workflow 1: Standard Project Naming</h4>
+        <ol>
+            <li>Select "Leading zeros" numbering</li>
+            <li>Add prefix "ProjectA_"</li>
+            <li>Enable "Clean extra whitespace"</li>
+            <li>Click "Preview Changes"</li>
+            <li>Click "Rename Layers"</li>
+        </ol>
+        <div class="example">
+            <strong>Result:</strong> "01_ProjectA_roads", "02_ProjectA_rivers"
+        </div>
+    </div>
+
+    <div class="workflow">
+        <h4>Workflow 2: Date-Stamped Layers</h4>
+        <ol>
+            <li>Click "📅 Date Prefix" quick template</li>
+            <li>Select date format</li>
+            <li>Click "Preview Changes"</li>
+            <li>Click "Rename Layers"</li>
+        </ol>
+        <div class="example">
+            <strong>Result:</strong> "20231201_roads", "20231201_rivers"
+        </div>
+    </div>
+
+    <div class="workflow">
+        <h4>Workflow 3: Clean Existing Names</h4>
+        <ol>
+            <li>Click "🧹 Clean Names" quick template</li>
+            <li>Review preview</li>
+            <li>Click "Rename Layers"</li>
+        </ol>
+        <div class="example">
+            <strong>Result:</strong> Removes special chars and cleans whitespace
+        </div>
+    </div>
+
+    <h2>❓ Troubleshooting</h2>
+    <ul>
+        <li><strong>Nothing happens when clicking buttons:</strong> Make sure layers are selected</li>
+        <li><strong>Invalid regex error:</strong> Check your regular expression syntax</li>
+        <li><strong>Names not changing:</strong> Verify that your settings actually modify the names</li>
+        <li><strong>Templates not saving:</strong> Check write permissions in plugin directory</li>
+    </ul>
+
+    <h2>📧 Support</h2>
+    <p>If you encounter issues or have suggestions, please contact the plugin developer.</p>
+
+</body>
+</html>

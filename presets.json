@@ -1,0 +1,18 @@
+{
+  "ghghy": {
+    "prefix": "",
+    "suffix": "",
+    "find_pattern": "",
+    "replace_pattern": "",
+    "use_regex": false,
+    "numbering_style": "sequential",
+    "uppercase": false,
+    "lowercase": false,
+    "title_case": false,
+    "capitalized": true,
+    "date_stamp": true,
+    "date_format": "YYYYMMDD",
+    "remove_special_chars": true,
+    "clean_whitespace": true
+  }
+}

@@ -1,0 +1,86 @@
+site_name: Advanced Layer Renamer
+site_description: Professional QGIS plugin for batch renaming map layers with advanced features
+site_author: Mukesh Ray
+site_url: https://github.com/raymukesh/advanced_layer_renamer
+
+repo_name: advanced_layer_renamer
+repo_url: https://github.com/raymukesh/advanced_layer_renamer
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/icon.png
+  favicon: assets/icon.png
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Quick Start: getting-started.md
+  - User Guide:
+    - Features: features.md
+    - Templates: templates.md
+    - Validation: validation.md
+  - Reference:
+    - Changelog: changelog.md
+    - FAQ: faq.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/raymukesh/advanced_layer_renamer
+  generator: false
+
+copyright: Copyright &copy; 2026 Mukesh Ray
