@@ -13,13 +13,14 @@
   <a href="https://github.com/raymukesh/advanced_layer_renamer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/raymukesh/advanced_layer_renamer?style=flat-square" alt="License"></a>
   <a href="https://qgis.org"><img src="https://img.shields.io/badge/QGIS-3.0%2B-brightgreen?style=flat-square" alt="QGIS Version"></a>
   <a href="https://github.com/raymukesh/advanced_layer_renamer/issues"><img src="https://img.shields.io/github/issues/raymukesh/advanced_layer_renamer?style=flat-square" alt="Issues"></a>
+  <a href="https://raymukesh.github.io/advanced_layer_renamer/"><img src="https://img.shields.io/badge/docs-GitHub%20Pages-blue?style=flat-square" alt="Documentation"></a>
 </p>
 
 <p align="center">
   <a href="#features">Features</a> •
   <a href="#installation">Installation</a> •
   <a href="#quick-start">Quick Start</a> •
-  <a href="#documentation">Documentation</a> •
+  <a href="https://raymukesh.github.io/advanced_layer_renamer/">Documentation</a> •
   <a href="#contributing">Contributing</a>
 </p>
 
@@ -189,15 +190,15 @@ When multiple options are enabled, transformations are applied in this order:
 
 ## Documentation
 
-Full documentation is available in the `docs/` folder:
+Full documentation is available at **[raymukesh.github.io/advanced_layer_renamer](https://raymukesh.github.io/advanced_layer_renamer/)**
 
-- [Installation Guide](docs/installation.md)
-- [Getting Started](docs/getting-started.md)
-- [Complete Feature Guide](docs/features.md)
-- [Templates System](docs/templates.md)
-- [Validation Tools](docs/validation.md)
-- [FAQ](docs/faq.md)
-- [Changelog](docs/changelog.md)
+- [Installation Guide](https://raymukesh.github.io/advanced_layer_renamer/installation/)
+- [Getting Started](https://raymukesh.github.io/advanced_layer_renamer/getting-started/)
+- [Complete Feature Guide](https://raymukesh.github.io/advanced_layer_renamer/features/)
+- [Templates System](https://raymukesh.github.io/advanced_layer_renamer/templates/)
+- [Validation Tools](https://raymukesh.github.io/advanced_layer_renamer/validation/)
+- [FAQ](https://raymukesh.github.io/advanced_layer_renamer/faq/)
+- [Changelog](https://raymukesh.github.io/advanced_layer_renamer/changelog/)
 
 ---
 

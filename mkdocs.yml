@@ -1,7 +1,7 @@
 site_name: Advanced Layer Renamer
 site_description: Professional QGIS plugin for batch renaming map layers with advanced features
 site_author: Mukesh Ray
-site_url: https://github.com/raymukesh/advanced_layer_renamer
+site_url: https://raymukesh.github.io/advanced_layer_renamer/
 
 repo_name: advanced_layer_renamer
 repo_url: https://github.com/raymukesh/advanced_layer_renamer
