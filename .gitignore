@@ -84,6 +84,9 @@ tmpclaude-*
 # MkDocs documentation build
 site/
 
+# Distribution builds
+dist/
+
 # QGIS plugin specific
 *.zip
 *.qm
