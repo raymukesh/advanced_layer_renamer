@@ -13,4 +13,4 @@ category=Vector
 icon=icon.png
 experimental=False
 deprecated=False
-homepage=https://github.com/raymukesh/advanced_layer_renamer
+homepage=https://raymukesh.github.io/advanced_layer_renamer/
