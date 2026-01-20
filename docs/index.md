@@ -1,7 +1,7 @@
 # Advanced Layer Renamer
 
 <div align="center">
-  <img src="assets/icon.png" alt="Plugin Icon" width="128">
+  <img src="assets/icon_for_readme.png" alt="Advanced Layer Renamer" width="400">
   <p><strong>Professional QGIS plugin for batch renaming map layers with advanced features</strong></p>
 </div>
 

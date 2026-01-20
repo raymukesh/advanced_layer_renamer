@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(copy \"C:\\\\Users\\\\140790\\\\AppData\\\\Roaming\\\\QGIS\\\\QGIS3\\\\profiles\\\\default\\\\python\\\\plugins\\\\batch_layer_renamer\\\\icon.png\" \"C:\\\\Users\\\\140790\\\\AppData\\\\Roaming\\\\QGIS\\\\QGIS3\\\\profiles\\\\default\\\\python\\\\plugins\\\\batch_layer_renamer\\\\docs\\\\assets\\\\icon.png\")",
+      "Bash(cmd /c:*)",
+      "Bash(git push:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(python:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(gh release create:*)",
+      "Bash(gh workflow run:*)"
+    ]
+  }
+}
