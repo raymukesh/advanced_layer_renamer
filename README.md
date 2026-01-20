@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon_for readme.png" alt="Advanced Layer Renamer" width="400">
+  <img src="icon_for readme_1.png" alt="Advanced Layer Renamer" width="400">
 </p>
 
 <h1 align="center">Advanced Layer Renamer</h1>
