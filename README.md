@@ -231,21 +231,6 @@ Contributions are welcome! Here's how you can help:
 
 ---
 
-## Roadmap
-
-Planned features for future releases:
-
-- [ ] Undo/redo support
-- [ ] Batch rename history
-- [ ] Export/import templates
-- [ ] Custom numbering start value
-- [ ] Numbering suffix option
-- [ ] Layer type filtering (vector/raster)
-- [ ] Group-aware renaming
-- [ ] Regular expression builder wizard
-
----
-
 ## License
 
 This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
