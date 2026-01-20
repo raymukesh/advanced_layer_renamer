@@ -80,6 +80,7 @@ desktop.ini
 # Temporary files
 tmp*
 .cache/
+.claude/
 
 # MkDocs documentation build
 site/
