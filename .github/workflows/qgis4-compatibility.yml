@@ -1,0 +1,37 @@
+name: QGIS 4 compatibility
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run compatibility tests
+        run: python3 -m unittest discover -s tests -v
+
+  pyqgis4-checker:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/qgis/pyqgis4-checker:main-ubuntu
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Qt 6 and PyQGIS 4 compatibility
+        run: pyqt5_to_pyqt6.py --dry_run --logfile pyqt6_checker.log .
+      - name: Verify that no conversion is required
+        run: |
+          cp -R . /tmp/advanced_layer_renamer-before
+          pyqt5_to_pyqt6.py .
+          diff -ru --exclude=.git --exclude=pyqt6_checker.log \
+            /tmp/advanced_layer_renamer-before .
+      - name: Upload compatibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pyqgis4-checker-report
+          path: pyqt6_checker.log
