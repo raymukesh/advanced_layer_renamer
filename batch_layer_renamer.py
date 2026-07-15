@@ -1,7 +1,7 @@
-from qgis.PyQt.QtCore import QCoreApplication, Qt
-from qgis.PyQt.QtWidgets import QAction, QMessageBox, QInputDialog
-from qgis.PyQt.QtGui import QIcon
 import os.path
+
+from qgis.PyQt.QtGui import QAction, QIcon
+
 from .batch_rename_dialog import BatchRenameDialog
 
 class BatchLayerRenamer:
@@ -32,10 +32,11 @@ class BatchLayerRenamer:
     def unload(self):
         self.iface.removePluginMenu('&Advanced Layer Renamer', self.action)
         self.iface.removeToolBarIcon(self.action)
+        self.action.deleteLater()
 
     def run(self):
         if self.dlg is None:
-            self.dlg = BatchRenameDialog(self.iface)
+            self.dlg = BatchRenameDialog(self.iface, self.iface.mainWindow())
 
         # Refresh the layer list each time the dialog is opened
         self.dlg.populateLayers()

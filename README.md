@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://github.com/raymukesh/advanced_layer_renamer/releases"><img src="https://img.shields.io/github/v/release/raymukesh/advanced_layer_renamer?style=flat-square" alt="Release"></a>
   <a href="https://github.com/raymukesh/advanced_layer_renamer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/raymukesh/advanced_layer_renamer?style=flat-square" alt="License"></a>
-  <a href="https://qgis.org"><img src="https://img.shields.io/badge/QGIS-3.0%2B-brightgreen?style=flat-square" alt="QGIS Version"></a>
+  <a href="https://qgis.org"><img src="https://img.shields.io/badge/QGIS-3.28--4.x-brightgreen?style=flat-square" alt="QGIS Version"></a>
   <a href="https://github.com/raymukesh/advanced_layer_renamer/issues"><img src="https://img.shields.io/github/issues/raymukesh/advanced_layer_renamer?style=flat-square" alt="Issues"></a>
   <a href="https://raymukesh.github.io/advanced_layer_renamer/"><img src="https://img.shields.io/badge/docs-GitHub%20Pages-blue?style=flat-square" alt="Documentation"></a>
 </p>
@@ -182,7 +182,7 @@ When multiple options are enabled, transformations are applied in this order:
 
 ## Requirements
 
-- **QGIS Version**: 3.0 or higher
+- **QGIS Version**: 3.28 through 4.x
 - **Platform**: Windows, macOS, Linux
 - **Dependencies**: None (uses standard QGIS/Qt libraries)
 

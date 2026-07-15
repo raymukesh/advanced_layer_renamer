@@ -1,28 +1,31 @@
-from qgis.PyQt.QtCore import Qt, QDateTime, QTimer
-from qgis.PyQt.QtWidgets import (
-    QDialog, QVBoxLayout, QHBoxLayout, QGridLayout, QPushButton,
-    QListWidget, QListWidgetItem, QLineEdit, QLabel, QGroupBox,
-    QCheckBox, QMessageBox, QRadioButton, QButtonGroup, QTabWidget,
-    QTextEdit, QComboBox, QSpinBox, QFileDialog, QTableWidget,
-    QTableWidgetItem, QHeaderView, QFrame, QScrollArea,
-    QProgressBar, QApplication, QWidget, QAbstractItemView,
-    QInputDialog, QTextBrowser, QDialogButtonBox, QSplitter
-)
-from qgis.PyQt.QtGui import QFont, QColor, QPalette
-from qgis.core import QgsProject, QgsMapLayer
-import re
-import os
 import json
-from datetime import datetime
+import os
+import re
 import webbrowser
+from datetime import datetime
+
+from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtGui import QColor, QFont
+from qgis.PyQt.QtWidgets import (
+    QAbstractItemView, QApplication, QButtonGroup, QCheckBox, QComboBox,
+    QDialog, QFrame, QGridLayout, QGroupBox, QHBoxLayout, QHeaderView,
+    QInputDialog, QLabel, QLineEdit, QListWidget, QListWidgetItem, QMessageBox,
+    QProgressBar, QPushButton, QRadioButton, QScrollArea, QSplitter,
+    QTableWidget, QTableWidgetItem, QTabWidget, QTextEdit, QVBoxLayout, QWidget,
+)
+from qgis.core import QgsApplication, QgsProject
 
 class BatchRenameDialog(QDialog):
-    def __init__(self, iface):
-        super().__init__(None)
+    def __init__(self, iface, parent=None):
+        super().__init__(parent)
         self.iface = iface
         self.plugin_dir = os.path.dirname(__file__) if __file__ else ""
-        self.presets_file = os.path.join(self.plugin_dir, 'presets.json') if self.plugin_dir else 'presets.json'
-        self.history_file = os.path.join(self.plugin_dir, 'history.json') if self.plugin_dir else 'history.json'
+        self.bundled_presets_file = os.path.join(self.plugin_dir, 'presets.json')
+        user_data_dir = os.path.join(
+            QgsApplication.qgisSettingsDirPath(), 'advanced_layer_renamer'
+        )
+        os.makedirs(user_data_dir, exist_ok=True)
+        self.presets_file = os.path.join(user_data_dir, 'presets.json')
         self.setupUi()
         self.populateLayers()
         self.loadPresets()
@@ -114,12 +117,12 @@ class BatchRenameDialog(QDialog):
         groupbox_style = "QGroupBox { font-weight: bold; }"
 
         # Main splitter for resizable left/right panels
-        main_splitter = QSplitter(Qt.Horizontal)
+        main_splitter = QSplitter(Qt.Orientation.Horizontal)
 
         # Left panel - Layers and controls
         left_panel = QFrame()
         left_layout = QVBoxLayout(left_panel)
-        left_panel.setFrameStyle(QFrame.StyledPanel)
+        left_panel.setFrameStyle(QFrame.Shape.StyledPanel)
         
         # Layers section
         layers_group = QGroupBox("🎯 Available Layers")
@@ -147,7 +150,9 @@ class BatchRenameDialog(QDialog):
         
         # Layers list with alternating colors
         self.layers_list = QListWidget()
-        self.layers_list.setSelectionMode(QListWidget.ExtendedSelection)
+        self.layers_list.setSelectionMode(
+            QAbstractItemView.SelectionMode.ExtendedSelection
+        )
         self.layers_list.setAlternatingRowColors(True)
         self.layers_list.itemSelectionChanged.connect(self.update_preview)
         layers_layout.addWidget(self.layers_list)
@@ -157,7 +162,7 @@ class BatchRenameDialog(QDialog):
         # Right panel - Options and preview
         right_panel = QFrame()
         right_layout = QVBoxLayout(right_panel)
-        right_panel.setFrameStyle(QFrame.StyledPanel)
+        right_panel.setFrameStyle(QFrame.Shape.StyledPanel)
         
         # Options scroll area
         options_scroll = QScrollArea()
@@ -320,10 +325,14 @@ class BatchRenameDialog(QDialog):
 
         self.preview_table = QTableWidget(0, 3)
         self.preview_table.setHorizontalHeaderLabels(['Original Name', 'New Name', 'Status'])
-        self.preview_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.preview_table.setEditTriggers(
+            QAbstractItemView.EditTrigger.NoEditTriggers
+        )
         self.preview_table.setAlternatingRowColors(True)
         # Make columns resizable by dragging
-        self.preview_table.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive)
+        self.preview_table.horizontalHeader().setSectionResizeMode(
+            QHeaderView.ResizeMode.Interactive
+        )
         self.preview_table.horizontalHeader().setStretchLastSection(True)
         preview_layout.addWidget(self.preview_table)
 
@@ -545,7 +554,7 @@ Common Naming Issues to Check:
         
         for layer_id, layer in sorted_layers:
             item = QListWidgetItem(f"{layer.name()}")
-            item.setData(Qt.UserRole, layer_id)
+            item.setData(Qt.ItemDataRole.UserRole, layer_id)
                 
             self.layers_list.addItem(item)
         
@@ -561,9 +570,9 @@ Common Naming Issues to Check:
         selected_items = self.layers_list.selectedItems()
         if not selected_items:
             # Return all layers if none selected
-            return [self.layers_list.item(i).data(Qt.UserRole) 
+            return [self.layers_list.item(i).data(Qt.ItemDataRole.UserRole)
                    for i in range(self.layers_list.count())]
-        return [item.data(Qt.UserRole) for item in selected_items]
+        return [item.data(Qt.ItemDataRole.UserRole) for item in selected_items]
     
     def generate_new_name(self, original_name, index=None):
         """Generate new name based on all options"""
@@ -791,32 +800,37 @@ Common Naming Issues to Check:
     def loadPresets(self):
         """Load saved templates"""
         self.template_list.clear()
-        if os.path.exists(self.presets_file):
-            try:
-                with open(self.presets_file, 'r') as f:
-                    presets = json.load(f)
-                for name in presets.keys():
-                    self.template_list.addItem(name)
-            except:
-                pass
+        presets = self._read_presets()
+        for name in presets:
+            self.template_list.addItem(name)
+
+    def _read_presets(self):
+        """Read user presets, falling back to presets bundled with the plugin."""
+        presets_path = (
+            self.presets_file
+            if os.path.exists(self.presets_file)
+            else self.bundled_presets_file
+        )
+        try:
+            with open(presets_path, 'r', encoding='utf-8') as presets_handle:
+                return json.load(presets_handle)
+        except (OSError, ValueError, TypeError):
+            return {}
     
     def save_template(self, name, template):
         """Save a template"""
-        presets = {}
-        if os.path.exists(self.presets_file):
-            try:
-                with open(self.presets_file, 'r') as f:
-                    presets = json.load(f)
-            except:
-                pass
+        presets = self._read_presets()
         
         presets[name] = template
         
         try:
-            with open(self.presets_file, 'w') as f:
+            with open(self.presets_file, 'w', encoding='utf-8') as f:
                 json.dump(presets, f, indent=2)
-        except:
-            pass
+        except OSError as error:
+            QMessageBox.critical(
+                self, "Template Error", f"Could not save template: {error}"
+            )
+            return
         
         self.loadPresets()
     
@@ -825,17 +839,12 @@ Common Naming Issues to Check:
         current_item = self.template_list.currentItem()
         if current_item:
             template_name = current_item.text()
-            if os.path.exists(self.presets_file):
-                try:
-                    with open(self.presets_file, 'r') as f:
-                        presets = json.load(f)
-                    
-                    if template_name in presets:
-                        template = presets[template_name]
-                        self.apply_template(template)
-                        QMessageBox.information(self, "Success", f"Template '{template_name}' loaded!")
-                except Exception as e:
-                    QMessageBox.critical(self, "Error", f"Could not load template: {str(e)}")
+            presets = self._read_presets()
+            if template_name in presets:
+                self.apply_template(presets[template_name])
+                QMessageBox.information(
+                    self, "Success", f"Template '{template_name}' loaded!"
+                )
     
     def delete_template(self):
         """Delete selected template"""
@@ -844,23 +853,25 @@ Common Naming Issues to Check:
             template_name = current_item.text()
             reply = QMessageBox.question(self, "Confirm Delete", 
                                        f"Delete template '{template_name}'?",
-                                       QMessageBox.Yes | QMessageBox.No)
-            if reply == QMessageBox.Yes:
-                if os.path.exists(self.presets_file):
+                                       QMessageBox.StandardButton.Yes |
+                                       QMessageBox.StandardButton.No)
+            if reply == QMessageBox.StandardButton.Yes:
+                presets = self._read_presets()
+                if template_name in presets:
+                    del presets[template_name]
                     try:
-                        with open(self.presets_file, 'r') as f:
-                            presets = json.load(f)
-                        
-                        if template_name in presets:
-                            del presets[template_name]
-                            
-                            with open(self.presets_file, 'w') as f:
-                                json.dump(presets, f, indent=2)
-                        
-                        self.loadPresets()
-                        QMessageBox.information(self, "Success", f"Template '{template_name}' deleted!")
-                    except Exception as e:
-                        QMessageBox.critical(self, "Error", f"Could not delete template: {str(e)}")
+                        with open(self.presets_file, 'w', encoding='utf-8') as f:
+                            json.dump(presets, f, indent=2)
+                    except OSError as error:
+                        QMessageBox.critical(
+                            self, "Error", f"Could not delete template: {error}"
+                        )
+                        return
+
+                self.loadPresets()
+                QMessageBox.information(
+                    self, "Success", f"Template '{template_name}' deleted!"
+                )
     
     def apply_template(self, template):
         """Apply template settings to UI"""

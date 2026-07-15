@@ -38,17 +38,17 @@ If the plugin is not available in the repository or you want to install a develo
 
     === "Windows"
         ```
-        C:\Users\<username>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\
+        C:\Users\<username>\AppData\Roaming\QGIS\QGIS<major>\profiles\default\python\plugins\
         ```
 
     === "macOS"
         ```
-        ~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/
+        ~/Library/Application Support/QGIS/QGIS<major>/profiles/default/python/plugins/
         ```
 
     === "Linux"
         ```
-        ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
+        ~/.local/share/QGIS/QGIS<major>/profiles/default/python/plugins/
         ```
 
 ---
@@ -60,7 +60,7 @@ For developers who want to contribute or modify the plugin:
 ### Prerequisites
 
 - Git installed on your system
-- QGIS 3.0 or higher
+- QGIS 3.28 through 4.x
 
 ### Steps
 

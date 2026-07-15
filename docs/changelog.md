@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.2.0] - 2026
+
+### Changed
+
+- Added QGIS 4 and Qt 6 compatibility while retaining QGIS 3.28+ support
+- Updated Qt imports and enum usage for PyQt5/PyQt6 compatibility
+- Store user templates in the active QGIS profile instead of the plugin folder
+
+---
+
 ## [0.1.0] - 2026
 
 ### Added
